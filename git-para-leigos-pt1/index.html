@@ -1,0 +1,314 @@
+<html>
+<head>
+    <title>titullo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+<article>
+    <h1>Git para leigos</h1>
+
+<p>O Git hoje é uma ferramenta fundamental para praticamente todos os desenvolvedores.
+Nesse artigo você irá entender de forma simplificada como o Git funciona, sua aplicabilidade e alguns comandos essenciais.
+Não veremos ainda como utilizar GitHub pois isso geraria mais confusão para quem tá começando e não entende ainda como o Git funciona.</p>
+
+<h2>Todo mundo já fez algo assim</h2>
+
+<p>Seja algum trabalho da escola, TCC, ou mesmo algum projeto de programação, você com certeza já deve ter feito isso:</p>
+
+<pre><code>trabalho de historia.docx
+trabalho de historia2.docx
+trabalho de historia3.docx
+trabalho de historia FINAL.docx
+trabalho de historia FINAL DE VERDADE.docx
+trabalho de historia FINAL AGORA EH PRA VALER.docx
+trabalho de historia FINAL CORRECOES.docx
+</code></pre>
+
+<p>Basicamente evitamos sobrescrever o arquivo por temos medo de alterar demais e não conseguir voltar a versão anterior.</p>
+
+<p>Para isso há décadas surgiram vários sistemas de controle de versão, que são ferramentas que te ajudam a registrar versões, que são pontos no histórico de alterações em arquivos, basicamente.</p>
+
+<h2>O que é o Git</h2>
+
+<p>Eu gosto de pensar no Git como uma “máquina do tempo de arquivos”.</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/amjathw1yf6644wdvbau.png" alt="Histórico do Git" /></p>
+
+<p>A figura acima é um exemplo de histórico de alterações, como se fosse uma linha do tempo.</p>
+
+<p>Com essa “máquina” conseguimos ver como um arquivo estava no passado, desfazer alterações, criar “realidades alternativas” onde o mesmo arquivo pode ser alterado de formas diferentes, desfazer alterações e muito mais.</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/l14tpypnwmdcsmak02s0.png" alt="Histórico do Git com realidade alternativa" /></p>
+
+<p>Na figura, em amarelo está o histórico principal, enquanto em azul é um histórico alternativo onde um tema está sendo desenvolvido. Quando esse tema é finalizado ele é combinado ao histórico principal.
+Não se preocupe em entender esse conceito agora.</p>
+
+<p>O Git se torna útil por uma série de motivos:</p>
+
+<ul>
+<li>Você não precisa ficar criando cópias de arquivos para não perder suas alterações</li>
+<li>O Git utiliza pouco armazenamento e é bem rápido</li>
+<li>É ótimo para trabalhar com arquivos em formato texto, como código, arquivos de configuração, arquivos de projetos, etc</li>
+<li>Tendo um histórico bem definido de alterações, é muito mais fácil entender o que foi alterado e reverter algo se necessário</li>
+<li>Facilita o trabalho em equipe, sendo possível combinar o trabalho de múltiplas pessoas com detecção automática de conflitos</li>
+</ul>
+
+<h2>Instalando o Git</h2>
+
+<p>Siga as instruções de instalação para o seu sistema. Para o Windows, instale com as opções padrões.</p>
+
+<p><a href="https://git-scm.com/download/win">Download para Windows</a></p>
+
+<p><a href="https://git-scm.com/download/linux">Download para Linux</a></p>
+
+<p><a href="https://git-scm.com/download/mac">Download para Mac</a></p>
+
+<h2>Seu primeiro projeto com Git</h2>
+
+<p>A melhor forma de aprender qualquer coisa é pondo em prática. Para isso vamos iniciar um projeto com Git.</p>
+
+<p>Vamos criar um projeto do zero exclusivamente para treinar Git, pois assim vamos ficar mais a vontade de fazer alterações e executar comandos sem medo de perder algo de importante.</p>
+
+<p>Para isso:</p>
+
+<ol>
+<li>Abra um terminal, no caso de Linux ou Mac, ou o Git Bash, no caso de Windows</li>
+<li>Digite <code>mkdir aprendendo-git</code> e aperte Enter para criar uma pasta</li>
+<li>Digite <code>cd aprendendo-git</code> e aperte Enter para entrar na pasta que criou</li>
+<li>Agora que está na pasta certa, digite <code>git init</code> e aperte Enter</li>
+</ol>
+
+<p>Seu resultado deve ser algo similar a isso:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/7tx0rsmqtbwdu9yydvla.png" alt="Criando um repositório git" /></p>
+
+<p>Com o comando <code>git init</code> nós inicializamos um <strong>repositório</strong> na pasta oculta <code>.git</code>.
+Um repositório é um local onde diversas informações, inclusive os registros de histórico, são guardadas.
+O repositório só vai analisar os arquivos dentro dessa pasta <code>aprendendo-git</code> e das subpastas, exceto a <code>.git</code> em si.</p>
+
+<blockquote>
+<p><strong>Tome cuidado!</strong> Se você apagar a pasta <code>.git</code>, você perderá todo o histórico que foi registrado.</p>
+</blockquote>
+
+<h2>O comando <code>git status</code></h2>
+
+<p>Este é um comando que iremos utilizar com bastante frequência, pois ele nos lista quais arquivos foram criados, alterados, apagados e essa alteração ainda não foi registrada no histórico.</p>
+
+<p>Como no projeto que acabamos de criar ainda não tem nenhum arquivo, se rodarmos o comando <code>git status</code>, vamos ter a seguinte saída:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sa6aeablqs0uqqvjafi5.png" alt="Saída do git status sem nenhuma alteração" /></p>
+
+<p>Basicamente está sendo dito que não tem nenhuma alteração para registrar.</p>
+
+<p>Vamos então criar um arquivo na pasta <code>aprendendo-git</code> utilizando o editor de sua preferência.</p>
+
+<p>Agora se rodarmos <code>git status</code> de novo, vamos ter uma saída diferente:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/n1ly5x4f0odr96ivelks.png" alt="Saída do git status quando tem alguma alteração" /></p>
+
+<p>O arquivo que criei está com status <strong>untracked</strong>, que significa que o Git nunca registrou esse arquivo no histórico.</p>
+
+<blockquote>
+<p>Obs.: o vermelho no arquivo não significa que algo está errado. O Git usa apenas para distinguir o status</p>
+</blockquote>
+
+<h2>Gravando alterações no histórico</h2>
+
+<p>Uma coisa importante para quem tá começando é que <strong>o Git não registra histórico por conta própria</strong>.</p>
+
+<p>Se você fizer uma alteração e desfazer sem explicitamente registrar no Git, essa alteração vai ser perdida.</p>
+
+<p>Para gravar uma alteração, precisamos seguir este fluxo:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/5rurd9ix83g2knqnart6.png" alt="Fazer alteração -&gt; Preparar alteração -&gt; Registrar alteração" /></p>
+
+<h3>1. Fazer alteração</h3>
+
+<p>Esse é o passo mais simples e já fizemos. Basta criar um arquivo dentro do projeto utilizando qualquer programa.</p>
+
+<p>Alterações nesse estágio são chamadas de alterações não-preparadas (<strong>unstaged</strong>) e são representadas no Git pela cor vermelha.</p>
+
+<h3>2. Preparar alteração</h3>
+
+<p>Esse passo antes de registrar a alteração nos dá maior flexibilidade, porque podemos ter 10 arquivos alterados, mas só 3 que queremos registrar no momento.
+Alterações nesse estágio são chamadas de preparadas (<strong>staged</strong>) e são representadas no Git pela cor verde.</p>
+
+<p>Para preparar todas as alterações em um arquivo, basta rodar o comando <code>git add &lt;arquivo&gt;</code>.</p>
+
+<p>Se olharmos o <code>git status</code> depois disso, vamos ver que agora o arquivo está com um status diferente e cor verde:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/q4vzohdygxy1fucx6we5.png" alt="Status de um arquivo preparado" /></p>
+
+<h3>3. Registrar alteração</h3>
+
+<p>Até o momento, nenhuma alteração que fizemos foi de fato “salva” no repositório.
+Para registrar nossas alterações <strong>preparadas</strong> (<strong>staged</strong>), nós vamos usar o comando <code>git commit</code>.</p>
+
+<p>Esse comando cria um <strong>commit</strong>, que nada mais é do que um registro no histórico do Git.
+A partir de agora vou passar a chamar “registro” de commit para você se acostumar com o termo.</p>
+
+<p>Um commit por padrão exige uma mensagem resumindo o que essas alterações fazem e o porquê.
+Podemos passar a mensagem utilizando a opção <code>-m</code> do comando commit, da seguinte forma:</p>
+
+<pre><code class="language-bash">git commit -m 'criando um exemplo'
+</code></pre>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/y4u47scbn6e0ye8qft37.png" alt="Erro ao fazer commit por não ter nome e email" /></p>
+
+<p>Obtemos um erro porque <strong>não temos nome e email</strong> configurado no Git.</p>
+
+<p>Todo commit no Git precisa dessas duas informações. Vamos fazer o sugerido e configurar nosso nome e email global.
+Não existe nenhuma validação nisso, então eu posso botar qualquer email e nome:</p>
+
+<pre><code class="language-bash"># com o --global: todos os projetos irão usar essas credenciais por padrão
+config --global user.email &quot;igor@eu.com&quot;
+config --global user.name &quot;Igor&quot;
+
+# sem o --global: cada projeto terá que configurar seu próprio user.email e user.name
+config user.email &quot;igor@eu.com&quot;
+config user.name &quot;Igor&quot;
+</code></pre>
+
+<p>Agora se tentarmos de novo, irá funcionar:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/mhvwjetjlr9nfs8k2vn1.png" alt="Commit sendo feito depois de configurar email e senha" /></p>
+
+<p>Pronto!
+Fizemos nosso primeiro commit.</p>
+
+<p>Agora vamos checar o status de novo:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/mp7fxpw40qw7kxwx3yn2.png" alt="Status após fazer um commit" /></p>
+
+<p>E vamos novamente modificar o arquivo <code>exemplo.txt</code> e olhar o status:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/uh4g6l5zac3th3fdwfit.png" alt="Status de modified no arquivo exemplo.txt" /></p>
+
+<p>Repare que o status dessa vez é <strong>modified</strong>, porque agora o arquivo já tem histórico no Git.</p>
+
+<h2>Vendo o histórico de commits e as alterações feitas</h2>
+
+<p>Há várias formas de fazer isso, mas para simplificar, vou usar um único comando: <code>git log -p</code>.</p>
+
+<p>O <code>git log</code> lista os commits na ordem dos mais recentes para os mais antigos:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/sjt9c63feg208x5myuqb.png" alt="Saída do git log" /></p>
+
+<p><strong>Várias informações são mostradas</strong>, mas as mais importantes por agora são:</p>
+
+<ul>
+<li>Autor (nome e email)</li>
+<li>Data</li>
+<li>Mensagem (criando um exemplo)</li>
+</ul>
+
+<p>Para sair dessa visualização apertamos <code>q</code> e podemos mover na vertical com as setas ou scroll do mouse.</p>
+
+<p>Se adicionarmos a opção <code>-p</code>, esse vai ser o resultado:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/wde7rlfvrl6sub9wd4wz.png" alt="Saída do git log -p" /></p>
+
+<p>De novo, aqui vemos várias informações sendo mostradas, mas as mais relevantes são:</p>
+
+<ul>
+<li>Mensagem, para entender o contexto das alterações</li>
+<li>Nome do arquivo que foi alterado, depois do <code>+++</code> (ignore o <code>a/</code> e o <code>b/</code>)</li>
+<li>O texto em verde com prefixo <code>+</code>, que significa que aquela linha foi adicionada</li>
+<li>Linhas em vermelho com prefixo <code>-</code> significa que foram removidas</li>
+</ul>
+
+<h2>Exemplo mais concreto</h2>
+
+<p>Vamos criar um projeto do zero de novo, mas dessa vez vamos fazer algo menos abstrato para você ter uma sensação de como é usar Git para um projeto real.</p>
+
+<p>Vou criar um projeto em HTML, mas não é requisito saber.</p>
+
+<h3>1. Iniciando o projeto</h3>
+
+<p>Vamos sair da pasta <code>aprendendo-git</code> vamos criar uma nova pasta <code>padaria</code> e vamos entrar nela:</p>
+
+<pre><code class="language-bash">cd
+mkdir padaria
+cd padaria
+</code></pre>
+
+<p>Vamos iniciar um repositório Git:</p>
+
+<pre><code class="language-bash">git init
+</code></pre>
+
+<h3>2. Primeiro commit</h3>
+
+<p>Agora vamos começar a criar a página principal, <code>index.html</code>:</p>
+
+<pre><code class="language-html">&lt;h1&gt;Bem-vindo a Padaria Rubrum Panem&lt;/h1&gt;
+&lt;p&gt;
+	Ipsum quo quia voluptatem quibusdam. Minima eos animi
+	dignissimos consequuntur qui optio distinctio possimus.
+&lt;/p&gt;
+</code></pre>
+
+<p>Quando sentirmos que já temos um básico feito, já podemos fazer nosso primeiro commit.</p>
+
+<p>Primeiro adicionamos o arquivo index.html:</p>
+
+<pre><code class="language-bash">git add index.html
+</code></pre>
+
+<p>E em seguida fazemos um commit:</p>
+
+<pre><code class="language-bash">git commit -m 'página principal'
+</code></pre>
+
+<h3>3. Commit de nova funcionalidade</h3>
+
+<p>Agora resolvemos criar uma página de contato, <code>contato.html</code>:</p>
+
+<pre><code class="language-html">&lt;h1&gt;Contato&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Telefone: (99) 99999-9999&lt;/li&gt;
+  &lt;li&gt;Email: contato@padaria.com&lt;/li&gt;
+  &lt;li&gt;Endereço: Rua da Padaria, 123 - Osasco&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>E criamos um link na <code>index.html</code> para a página <code>contato.html</code>:</p>
+
+<pre><code class="language-html">...
+&lt;a href=&quot;/contato.html&quot;&gt;Contato&lt;/a&gt;
+</code></pre>
+
+<p>Faz sentido que ambas as alterações sejam adicionadas a um mesmo commit, já que estão totalmente relacionadas. Sem a alteração do <code>index.html</code> o usuário não tem link para a página de contato, então vamos adicionar os dois arquivos:</p>
+
+<pre><code class="language-bash">git add index.html contato.html
+</code></pre>
+
+<p>Podemos olhar o status para confirmar que os dois arquivos foram adicionados:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/hfpinkl26x9evb6ruhfc.png" alt="Verificando o status depois de um git add" /></p>
+
+<p>E agora fazemos o commit:</p>
+
+<pre><code class="language-bash">git commit -m 'página de contato'
+</code></pre>
+
+<h3>4. Revendo os commits feitos</h3>
+
+<p>Se rodarmos o comando <code>git log -p</code> que aprendemos antes, o resultado será:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/kp1c27y4n48qxt6ngptn.png" alt="Saída do git log -p após o segundo commit" /></p>
+
+<p>E rolando para baixo:</p>
+
+<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/x321hfmoorkbscbf54ts.png" alt="Saída do git log -p após o segundo commit" /></p>
+
+<h2>Conclusão</h2>
+
+<p>Com isso já podemos concluir a primeira parte, mas não se iluda, isso é apenas o começo!
+Pratique bastante, pois mais para frente você vai aprender a reverter commits, combinar commits, criar branches, trabalhar com remotes como GitHub, criar pull requests, e muito mais.</p>
+
+</article>
+<link rel="stylesheet" href="/styles/post.css">
+</body>
+</html>
